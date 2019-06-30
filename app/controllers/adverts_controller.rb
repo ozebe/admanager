@@ -11,6 +11,7 @@ class AdvertsController < ApplicationController
   # GET /adverts/1
   # GET /adverts/1.json
   def show
+    @adverts = Advert.all
   end
 
   # GET /adverts/new
@@ -70,6 +71,6 @@ class AdvertsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def advert_params
-      params.require(:advert).permit(:title, :description, :price)
+      params.require(:advert).permit(:title, :description, :price, :category_id, :user_id)
     end
 end
