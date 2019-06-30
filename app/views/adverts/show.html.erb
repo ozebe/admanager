@@ -1,22 +1,37 @@
+<div class="container-fluid">
+  <br>
+  <br>
+  <br>
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Title:</strong>
-  <%= @advert.title %>
-</p>
+<div class="panel panel-info">
+  <div class="panel-heading">
+    <h3 class="panel-title"><strong><%= @advert.title %></strong></h3>
+  </div>
+  <div class="panel-body">
+    <strong>Descrição:</strong>
+    <%= @advert.description %>
+    <br>
+    <strong>Categoria</strong>
+    <% @advert.category.name %>
+    <p>
+      <strong>Data de inserção do anúncio:</strong>
+      <%= @advert.created_at %>
+        <br>
+        <strong>Vendedor: </strong><%= @advert.user.name %>
+        <br>
+      <strong>Telefone do vendedor:</strong>
+      <%= @advert.user.telephone %>
 
-<p>
-  <strong>Description:</strong>
-  <%= @advert.description %>
-</p>
+    </p>
+    <br>
+    <%advert = @advert %>
+    <%if can? :manage, advert %>
+      <%= link_to 'Editar', edit_advert_path(@advert), :class => "btn btn-warning"  %>
+    <%end %>
 
-<p>
-  <strong>Price:</strong>
-  <%= @advert.price %>
-</p>
+  </div>
+</div>
 
-<%advert = @advert %>
-<%if can? :manage, advert %>
-<%= link_to 'Edit', edit_advert_path(@advert) %> |
-<%end %>
-<%= link_to 'Back', adverts_path %>
+<%= link_to 'Voltar', adverts_path, :class => "btn btn-primary"  %>
+</div>
