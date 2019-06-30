@@ -12,17 +12,17 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :title %>
+    <%= form.label :'Título' %>
     <%= form.text_field :title %>
   </div>
 
   <div class="field">
-    <%= form.label :description %>
+    <%= form.label :'Descrição' %>
     <%= form.text_field :description %>
   </div>
 
   <div class="field">
-    <%= form.label :price %>
+    <%= form.label :'Preço' %>
     <%= form.number_field :price %>
   </div>
 
@@ -32,6 +32,7 @@
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit "Salvar", :class => "btn btn-success btn-lg"%>
   </div>
+  <br>
 <% end %>
