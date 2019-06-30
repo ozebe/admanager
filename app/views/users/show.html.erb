@@ -1,19 +1,26 @@
-<p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @user.name %>
-</p>
+<div class="container-fluid">
+  <br>
+  <br>
+  <br>
+  <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Address:</strong>
-  <%= @user.address %>
-</p>
 
-<p>
-  <strong>Telephone:</strong>
-  <%= @user.telephone %>
-</p>
+  <p>
+    <strong>Nome:</strong>
+    <%= @user.name %>
+  </p>
 
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+  <p>
+    <strong>Endereço:</strong>
+    <%= @user.address %>
+  </p>
+
+  <p>
+    <strong>Telefone:</strong>
+    <%= @user.telephone %>
+  </p>
+
+  <%= link_to 'Editar', edit_user_path(@user), :class => "btn btn-warning" %> |
+  <%= link_to 'Voltar', users_path, :class => "btn btn-primary" %>
+</div>

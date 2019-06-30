@@ -1,31 +1,37 @@
-<p id="notice"><%= notice %></p>
 
-<h1>Users</h1>
 
-<table>
-  <thead>
+<div class="container-fluid">
+  <br>
+  <br>
+  <p id="notice"><%= notice %></p>
+
+  <h1>Usuários</h1>
+  <table class="table table-striped">
+    <thead>
     <tr>
-      <th>Name</th>
-      <th>Address</th>
-      <th>Telephone</th>
+      <th>Nome</th>
+      <th>Endereço</th>
+      <th>Telefone</th>
       <th colspan="3"></th>
     </tr>
-  </thead>
+    </thead>
 
-  <tbody>
+    <tbody>
     <% @users.each do |user| %>
       <tr>
         <td><%= user.name %></td>
         <td><%= user.address %></td>
         <td><%= user.telephone %></td>
-        <td><%= link_to 'Show', user %></td>
-        <td><%= link_to 'Edit', edit_user_path(user) %></td>
-        <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Visualizar Conta', user, :class => "btn btn-info" %></td>
+        <%if can? :manage, user %>
+          <td><%= link_to 'Edit', edit_user_path(user), :class => "btn btn-warning" %></td>
+          <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-danger" %></td>
+        <%end %>
       </tr>
     <% end %>
-  </tbody>
-</table>
+    </tbody>
+  </table>
 
-<br>
+  <br>
+</div>
 
-<%= link_to 'New User', new_user_path %>

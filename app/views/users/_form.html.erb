@@ -13,20 +13,21 @@
 
   <div class="field">
     <%= form.label :name %>
-    <%= form.text_field :name %>
+    <%= form.text_field :name, :class => "form-control"  %>
   </div>
 
   <div class="field">
     <%= form.label :address %>
-    <%= form.text_field :address %>
+    <%= form.text_field :address, :class => "form-control"  %>
   </div>
 
   <div class="field">
     <%= form.label :telephone %>
-    <%= form.text_field :telephone %>
+    <%= form.text_field :telephone, :class => "form-control"  %>
   </div>
-
+<br>
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit "Salvar", :class => "btn btn-success btn-lg"%>
   </div>
+  <br>
 <% end %>

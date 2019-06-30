@@ -1,5 +1,14 @@
-<h1>Novo anúncio</h1>
 
-<%= render 'form', advert: @advert %>
+<div class="container-fluid col-xs-6 col-md-4 col-md-offset-4">
 
-<%= link_to 'Voltar', adverts_path, :class => "btn btn-primary"  %>
+  <br>
+  <br>
+    <div class="panel-heading">
+      <h3 class="panel-title"><strong><h3 class="text-center">Inserir novo anúncio</h3></strong></h3>
+    </div>
+
+    <%= render 'form', advert: @advert %>
+    <%= link_to 'Voltar', adverts_path, :class => "btn btn-primary"%>
+
+
+</div>
