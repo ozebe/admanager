@@ -32,10 +32,10 @@ class Ability
     # https://github.com/CanCanCommunity/cancancan/wiki/Defining-Abilities
     #
     #
-    #if user.present?
-    #  can :manage, Post, user_id: user.id
-    #  can :manage, User, id: user.id
-    #end
+    if user.present?
+      can :manage, Advert, user_id: user.id
+      can :manage, User, id: user.id
+    end
     #
   end
 end

@@ -1,0 +1,22 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @advert.title %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @advert.description %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @advert.price %>
+</p>
+
+<%advert = @advert %>
+<%if can? :manage, advert %>
+<%= link_to 'Edit', edit_advert_path(@advert) %> |
+<%end %>
+<%= link_to 'Back', adverts_path %>
