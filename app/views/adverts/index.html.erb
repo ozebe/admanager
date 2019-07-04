@@ -72,7 +72,28 @@
       </tr>
     <% end %>
   </tbody>
+
+
 </table>
+<div style="">
+  <% @adverts.each do |advert| %>
+    <div class="row" style="">
+      <div class="col-sm-6 col-md-4">
+        <div class="thumbnail">
+
+          <% p = advert.images[0]%>
+          <%= image_tag p.thumb.url unless p.file.nil? %>
+
+          <div class="caption">
+            <h3><%= advert.title %></h3>
+            <p><%= advert.description %></p>
+            <p><a href="#" class="btn btn-primary" role="button">Ver anúncio</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  <%end %>
+</div>
 <br>
 
 <%= link_to 'Inserir anúncio', new_advert_path, :class => "btn btn-primary" %>

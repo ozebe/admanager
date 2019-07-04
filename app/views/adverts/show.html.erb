@@ -79,8 +79,7 @@
 
     <% @advert.images.each do |photo|%>
       <div>
-        <%= image_tag photo.url unless photo.file.nil? %>
-
+        <%= image_tag photo.thumb.url unless photo.file.nil? %>
       </div>
     <% end %>
 
