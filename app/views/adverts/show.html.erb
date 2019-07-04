@@ -56,17 +56,25 @@
     <strong>Descrição:</strong>
     <%= @advert.description %>
     <br>
+    <strong>Preço:</strong>
+    <%= @advert.price %>
+    <br>
     <strong>Categoria</strong>
     <% @advert.category.name %>
     <p>
       <strong>Data de inserção do anúncio:</strong>
       <%= @advert.created_at %>
         <br>
-        <strong>Vendedor: </strong><%= @advert.user.name %>
+        <strong>Nome Vendedor: </strong><%= @advert.user.name %>
         <br>
       <strong>Telefone do vendedor:</strong>
       <%= @advert.user.telephone %>
-
+        <br>
+      <strong>Endereço do vendedor:</strong>
+      <%= @advert.user.address%>
+      <br>
+      <strong>Email do vendedor:</strong>
+      <%= @advert.user.email%>
     </p>
     <br>
     <%advert = @advert %>
