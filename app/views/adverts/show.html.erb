@@ -76,6 +76,14 @@
       <strong>Email do vendedor:</strong>
       <%= @advert.user.email%>
     </p>
+
+    <% @advert.images.each do |photo|%>
+      <div>
+        <%= image_tag photo.url unless photo.file.nil? %>
+
+      </div>
+    <% end %>
+
     <br>
     <%advert = @advert %>
     <%if can? :manage, advert %>
