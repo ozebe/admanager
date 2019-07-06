@@ -32,6 +32,8 @@
               <li><%= link_to "Editar conta", edit_user_registration_path %></li>
               <%if current_user.admin? == true %>
               <li><%= link_to "Usuários", users_path %></li>
+                <li><%= link_to "Criar categoria", new_category_path %></li>
+                <li><%= link_to "Categorias", categories_path %></li>
                 <%end %>
               <li role="separator" class="divider"></li>
               <li><a <%= link_to('Sair', destroy_user_session_path, method: :delete) %></a></li>
