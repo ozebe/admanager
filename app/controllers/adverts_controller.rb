@@ -6,6 +6,7 @@ class AdvertsController < ApplicationController
   # GET /adverts.json
   def index
     @adverts = Advert.all
+    @adverts = Advert.order(:title)
     @categories = Category.all
   end
 
