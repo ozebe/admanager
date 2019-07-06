@@ -5,10 +5,16 @@ class AdvertsController < ApplicationController
   # GET /adverts
   # GET /adverts.json
   def index
-    @adverts = Advert.all
-    @adverts = Advert.order(:title)
-    @categories = Category.all
-  end
+
+    if params[:titleSearch].nil?
+      @adverts = Advert.all
+      @adverts = Advert.order(:title)
+      @categories = Category.all
+    else
+      @adverts = Advert.titleSearch(params[:titleSearch]).order(:title)
+      @categories = Category.all
+    end
+    end
 
   # GET /adverts/1
   # GET /adverts/1.json
@@ -79,6 +85,6 @@ class AdvertsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def advert_params
-      params.require(:advert).permit(:title, :description, :price, :category_id, :user_id, {images: []})
+      params.require(:advert).permit(:title, :description, :price, :category_id, :user_id, {images: []}, :titleSearch)
     end
 end

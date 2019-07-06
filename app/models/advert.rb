@@ -6,4 +6,6 @@ class Advert < ApplicationRecord
   validates_presence_of :description
   validates_presence_of :price
   validates_presence_of :images
+
+  scope :titleSearch, -> (title) { where("UPPER (adverts.title) like ?", "%#{title.upcase}%")}
 end
