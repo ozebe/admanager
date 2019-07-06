@@ -30,6 +30,9 @@
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= current_user.email%><span class="caret"></span></a>
             <ul class="dropdown-menu">
               <li><%= link_to "Editar conta", edit_user_registration_path %></li>
+              <%if current_user.admin? == true %>
+              <li><%= link_to "Usuários", users_path %></li>
+                <%end %>
               <li role="separator" class="divider"></li>
               <li><a <%= link_to('Sair', destroy_user_session_path, method: :delete) %></a></li>
 
@@ -45,57 +48,74 @@
 <div class="container-fluid">
   <br>
   <br>
-<p id="notice"><%= notice %></p>
+  <p id="notice"><%= notice %></p>
 
-<h1>Anúncios</h1>
-<table>
-  <thead>
-    <tr>
-      <th>Título</th>
-      <th>Descrição</th>
-      <th>Preço</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+  <h1>Anúncios</h1>
 
-  <tbody>
+  <div class="panel panel-default" style="float: left;">
+    <div class="panel-heading">Categorias</div>
+    <div class="panel-body">
+
+      <table class="table">
+        <thead>
+        <tr>
+          <th>Nome</th>
+          <th colspan="3"></th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <% @categories.each do |category| %>
+          <tr>
+            <td><%= category.name %></td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="col-md-offset-3 ">
     <% @adverts.each do |advert| %>
-      <tr>
-        <td><%= advert.title %></td>
-        <td><%= advert.description %></td>
-        <td><%= advert.price %></td>
-        <td><%= link_to 'Visualizar', advert, :class => "btn btn-info" %></td>
-        <%if can? :manage, advert %>
-        <td><%= link_to 'Editar', edit_advert_path(advert), :class => "btn btn-warning"   %></td>
-        <td><%= link_to 'Apagar', advert, method: :delete, data: { confirm: 'Tem certeza que deseja apagar?' }, :class => "btn btn-danger"  %></td>
-         <%end %>
-      </tr>
-    <% end %>
-  </tbody>
+      <div class="col-sm-8">
+        <div class="thumbnail" style="height: 148px;">
+          <div class="">
+
+            <div class="" style="float: left";>
+              <% p = advert.images[0]%>
+              <%= link_to (image_tag(p.thumb.url) unless p.file.nil?), advert %>
+
+            </div>
+            <div>
+              <%= %>
+            </div>
+            <div class="caption">
+              <div class="">
+                <div  class="col-sm-6 " style="max-width: 200px;">
+                  <h3><%=resume advert.title %></h3>
+                </div>
+                <div style="float: right;     height: inherit;
+                    padding: 10px 0 0 0;
+                    width: 56px;">
+                  <h4><%= post_date advert.created_at %></h4>
+                </div>
+                <div style="float: right;     height: inherit;
+                    padding: 16px 0 0 0;
+                    width: 96px;;">
+                  <h4><strong>R$ <%= advert.price %></strong></h4>
+                </div>
 
 
-</table>
-<div style="">
-  <% @adverts.each do |advert| %>
-    <div class="row" style="">
-      <div class="col-sm-6 col-md-4">
-        <div class="thumbnail">
-
-          <% p = advert.images[0]%>
-          <%= image_tag p.thumb.url unless p.file.nil? %>
-
-          <div class="caption">
-            <h3><%= advert.title %></h3>
-            <p><%= advert.description %></p>
-            <p><a href="#" class="btn btn-primary" role="button">Ver anúncio</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  <%end %>
-</div>
-<br>
 
-<%= link_to 'Inserir anúncio', new_advert_path, :class => "btn btn-primary" %>
-</div>
 
+    <%end %>
+  </div>
+
+
+
+</div>

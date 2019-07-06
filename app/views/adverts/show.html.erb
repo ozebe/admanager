@@ -46,51 +46,57 @@
   <br>
   <br>
   <br>
-<p id="notice"><%= notice %></p>
+  <p id="notice"><%= notice %></p>
 
-<div class="panel panel-info">
-  <div class="panel-heading">
-    <h3 class="panel-title"><strong><%= @advert.title %></strong></h3>
-  </div>
-  <div class="panel-body">
-    <strong>Descrição:</strong>
-    <%= @advert.description %>
-    <br>
-    <strong>Preço:</strong>
-    <%= @advert.price %>
-    <br>
-    <strong>Categoria</strong>
-    <% @advert.category.name %>
-    <p>
-      <strong>Data de inserção do anúncio:</strong>
-      <%= @advert.created_at %>
+  <div class="panel panel-info">
+    <div class="panel-heading">
+      <h3 class="panel-title"><strong><%= @advert.title %></strong></h3>
+    </div>
+    <div class="panel-body">
+      <strong>Descrição:</strong>
+      <%= @advert.description %>
+      <br>
+      <strong>Preço:</strong>
+      <%= @advert.price %>
+      <br>
+      <strong>Categoria</strong>
+      <% @advert.category.name %>
+      <p>
+        <strong>Data de inserção do anúncio:</strong>
+        <%= @advert.created_at %>
         <br>
         <strong>Nome Vendedor: </strong><%= @advert.user.name %>
         <br>
-      <strong>Telefone do vendedor:</strong>
-      <%= @advert.user.telephone %>
+        <strong>Telefone do vendedor:</strong>
+        <%= @advert.user.telephone %>
         <br>
-      <strong>Endereço do vendedor:</strong>
-      <%= @advert.user.address%>
-      <br>
-      <strong>Email do vendedor:</strong>
-      <%= @advert.user.email%>
-    </p>
+        <strong>Endereço do vendedor:</strong>
+        <%= @advert.user.address%>
+        <br>
+        <strong>Email do vendedor:</strong>
+        <%= @advert.user.email%>
+      </p>
 
-    <% @advert.images.each do |photo|%>
-      <div>
-        <%= image_tag photo.thumb.url unless photo.file.nil? %>
+      <div style="
+      clear: both;
+          display: table;">
+        <% @advert.images.each do |photo|%>
+          <div style="  float: left;
+
+              padding: 5px;">
+            <%= image_tag photo.thumb.url unless photo.file.nil? %>
+          </div>
+        <% end %>
       </div>
-    <% end %>
+      <br>
+      <%advert = @advert %>
+      <%if can? :manage, advert %>
+        <%= link_to 'Editar', edit_advert_path(@advert), :class => "btn btn-warning"  %>
+        <%= link_to 'Apagar', @advert, method: :delete, data: { confirm: 'Tem certeza que deseja apagar?' }, :class => "btn btn-danger"  %>
+      <%end %>
 
-    <br>
-    <%advert = @advert %>
-    <%if can? :manage, advert %>
-      <%= link_to 'Editar', edit_advert_path(@advert), :class => "btn btn-warning"  %>
-    <%end %>
-
+    </div>
   </div>
-</div>
 
-<%= link_to 'Voltar', adverts_path, :class => "btn btn-primary"  %>
+  <%= link_to 'Voltar', adverts_path, :class => "btn btn-primary"  %>
 </div>
