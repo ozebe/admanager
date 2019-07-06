@@ -20,7 +20,10 @@
     <strong>Telefone:</strong>
     <%= @user.telephone %>
   </p>
+  <%user = @user %>
+  <%if can? :manage, user %>
 
   <%= link_to 'Editar', edit_user_path(@user), :class => "btn btn-warning" %> |
+  <%end %>
   <%= link_to 'Voltar', users_path, :class => "btn btn-primary" %>
 </div>
