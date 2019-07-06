@@ -10,6 +10,12 @@ class CategoriesController < ApplicationController
   # GET /categories/1
   # GET /categories/1.json
   def show
+    if can? :manage, @category
+
+    else
+      redirect_to home_index_url
+
+    end
   end
 
   # GET /categories/new
@@ -19,11 +25,19 @@ class CategoriesController < ApplicationController
 
   # GET /categories/1/edit
   def edit
+    if can? :manage, @category
+
+    else
+      redirect_to home_index_url
+    end
+
   end
 
   # POST /categories
   # POST /categories.json
   def create
+    if can? :manage, @category
+
     @category = Category.new(category_params)
 
     respond_to do |format|
@@ -35,11 +49,15 @@ class CategoriesController < ApplicationController
         format.json { render json: @category.errors, status: :unprocessable_entity }
       end
     end
+    else
+      redirect_to home_index_url
+    end
   end
 
   # PATCH/PUT /categories/1
   # PATCH/PUT /categories/1.json
   def update
+    if can? :manage, @category
     respond_to do |format|
       if @category.update(category_params)
         format.html { redirect_to @category, notice: 'Category was successfully updated.' }
@@ -48,6 +66,9 @@ class CategoriesController < ApplicationController
         format.html { render :edit }
         format.json { render json: @category.errors, status: :unprocessable_entity }
       end
+    end
+    else
+      redirect_to home_index_url
     end
   end
 

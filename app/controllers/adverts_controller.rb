@@ -23,6 +23,11 @@ class AdvertsController < ApplicationController
 
   # GET /adverts/1/edit
   def edit
+    if can? :manage, @advert
+
+    else
+      redirect_to home_index_url
+    end
   end
 
   # POST /adverts

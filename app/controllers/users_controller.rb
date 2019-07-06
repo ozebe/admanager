@@ -10,6 +10,11 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
+    if can? :manage, @user
+
+    else
+      redirect_to home_index_url
+    end
   end
 
   # GET /users/new
@@ -19,6 +24,11 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
+    if can? :manage, @user
+
+    else
+      redirect_to home_index_url
+    end
   end
 
   # POST /users
@@ -40,6 +50,7 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
   def update
+    if can? :manage, @user
     respond_to do |format|
       if @user.update(user_params)
         format.html { redirect_to @user, notice: 'User was successfully updated.' }
@@ -48,6 +59,9 @@ class UsersController < ApplicationController
         format.html { render :edit }
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
+    end
+    else
+      redirect_to home_index_url
     end
   end
 
