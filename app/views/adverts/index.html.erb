@@ -76,7 +76,7 @@
         <tbody>
         <% @categories.each do |category| %>
           <tr>
-            <td><%= category.name %></td>
+            <td><%= link_to category.name %></td>
           </tr>
         <% end %>
         </tbody>
