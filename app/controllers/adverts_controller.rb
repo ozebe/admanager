@@ -9,21 +9,21 @@ class AdvertsController < ApplicationController
     if params[:titleSearch].nil?
       if params[:category_id].nil?
         @adverts = Advert.all
-        @adverts = Advert.order(:title)
+        @adverts = Advert.order(:views).order(:title)
         @categories = Category.all
       else
-        @adverts = Advert.where(:category_id => params[:category_id]).order(:title)
+        @adverts = Advert.where(:category_id => params[:category_id]).order(:views).order(:title)
         @categories = Category.all
         flash[:notice] = "Existem <b>#{@adverts.count}</b> anúncios nessa categoria".html_safe
       end
 
     else
       if params[:category_id].nil?
-        @adverts = Advert.titleSearch(params[:titleSearch]).order(:title)
+        @adverts = Advert.titleSearch(params[:titleSearch]).order(:views).order(:title)
         @categories = Category.all
       else
-        @adverts = Advert.where(:category_id => params[:category_id]).order(:title)
-        @adverts = Advert.titleSearch(params[:titleSearch]).order(:title)
+        @adverts = Advert.where(:category_id => params[:category_id]).order(:views).order(:title)
+        @adverts = Advert.titleSearch(params[:titleSearch]).order(:views).order(:title)
         @categories = Category.all
         flash[:notice] = "Existem <b>#{@adverts.count}</b> anúncios nessa categoria".html_safe
       end
@@ -32,10 +32,10 @@ class AdvertsController < ApplicationController
 
     if params[:id].nil?
       @adverts = Advert.all
-      @adverts = Advert.order(:title)
+      @adverts = Advert.order(:views).order(:views).order(:title)
       @categories = Category.all
     else
-      @adverts = Advert.where(:user_id => params[:id]).order(:title)
+      @adverts = Advert.where(:user_id => params[:id]).order(:views).order(:title)
       @categories = Category.all
     end
 
@@ -45,6 +45,8 @@ class AdvertsController < ApplicationController
   # GET /adverts/1.json
   def show
     @adverts = Advert.all
+    @adverts = Advert.where(:category_id => @advert.category_id).order(:views).order(:title)
+    @advert.increment
   end
 
   # GET /adverts/new
@@ -67,6 +69,7 @@ class AdvertsController < ApplicationController
   def create
     @advert = Advert.new(advert_params)
     @advert.user = current_user
+    @advert.views = 0
     respond_to do |format|
       if @advert.save
         format.html { redirect_to @advert, notice: 'Advert was successfully created.' }
