@@ -39,7 +39,12 @@ class Ability
     if user.admin?
       can :manage, :all
       can :mange, Category
+         end
+
+    if user ||= User.new
+      can :read, :all
     end
-    #
+
+
   end
 end
