@@ -1,2 +1,132 @@
-<h1>Home#index</h1>
-<p>Find me in app/views/home/index.html.erb</p>
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/home/index">Home</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <% if user_signed_in? %>
+          <li><%= link_to 'Novo anúncio', new_advert_path %></li>
+        <% else %>
+          <li>
+            <%= link_to('Login', new_user_session_path) %>
+          </li>
+
+        <% end %>
+      </ul>
+      <form class="navbar-form navbar-left">
+        <div class="form-group">
+          <%= form_tag('/adverts', method: 'get') do %>
+            <input type="text" class="form-control " placeholder="Buscar por título" <%= text_field_tag(:titleSearch) %>
+            </div>
+            <button type="submit" class="btn btn-default">Buscar</button>
+          <% end %>
+          </form>
+      <% if user_signed_in? %>
+        <ul class="nav navbar-nav navbar-right">
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= current_user.email%><span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><%= link_to "Editar conta", edit_user_registration_path %></li>
+              <%user = current_user %>
+              <li><%= link_to 'Meus anúncios', adverts_path(:id=>user.id)%></li>
+              <%if current_user.admin? == true %>
+                <li><%= link_to "Usuários", users_path %></li>
+                <li><%= link_to "Criar categoria", new_category_path %></li>
+                <li><%= link_to "Categorias", categories_path %></li>
+              <%end %>
+              <li role="separator" class="divider"></li>
+              <li><a <%= link_to('Sair', destroy_user_session_path, method: :delete) %></a></li>
+
+            </ul>
+      <% end %>
+      </li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+
+  </div><!-- /.container-fluid -->
+</nav>
+
+<div class="container-fluid">
+  <br>
+  <br>
+
+
+  <h1>Anúncios</h1>
+
+  <div class="panel panel-default" style="float: left;">
+    <div class="panel-heading">Categorias</div>
+    <div class="panel-body">
+      <p id="notice"><%= notice %></p>
+      <table class="table">
+        <thead>
+        <tr>
+          <th>Nome</th>
+          <th colspan="3"></th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <% @categories.each do |category| %>
+          <tr>
+            <td><%= link_to category.name, adverts_path(:category_id=>category.id)%></td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="col-md-offset-3 ">
+    <% @adverts.each do |advert| %>
+      <div class="col-sm-8">
+        <div class="thumbnail" style="height: 148px;">
+          <div class="">
+
+            <div class="" style="float: left";>
+              <% p = advert.images[0]%>
+              <%= link_to (image_tag(p.thumb.url) unless p.file.nil?), advert %>
+
+            </div>
+            <div>
+              <%= %>
+            </div>
+            <div class="caption">
+              <div class="">
+                <div  class="col-sm-6 " style="max-width: 200px;">
+                  <h3><%=resume advert.title %></h3>
+                </div>
+                <div style="float: right;     height: inherit;
+                    padding: 10px 0 0 0;
+                    width: 56px;">
+                  <h4><%= post_date advert.created_at %></h4>
+                </div>
+                <div style="float: right;     height: inherit;
+                    padding: 16px 0 0 0;
+                    width: 96px;;">
+                  <h4><strong>R$ <%= advert.price %></strong></h4>
+                </div>
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    <%end %>
+  </div>
+
+
+
+</div>
