@@ -1,2 +1,33 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+.painel{
+  float: left;
+}
+
+.thumb{
+  height: 148px;
+}
+
+.info-advert{
+  float: right;     height: inherit;
+  padding: 10px 0 0 0;
+  width: 56px;
+}
+
+.info-ajuste{
+  float: right;
+  height: inherit;
+  padding: 16px 0 0 0;
+  width: 96px;
+}
+
+.lg-max-painel{
+  max-width: 200px;
+}
+
+.botao{
+  border-radius: 40px;
+  box-shadow: 0 0 11px rgba(33,33,33,.2);
+  margin-top: 10px;
+}

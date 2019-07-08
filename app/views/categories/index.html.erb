@@ -68,8 +68,8 @@
       <tr>
         <td><%= category.name %></td>
         <%if can? :manage, category %>
-        <td><%= link_to 'Editar', edit_category_path(category), :class => "btn btn-warning" %></td>
-        <td><%= link_to 'Apagar', category, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-danger" %></td>
+        <td><%= link_to 'Editar', edit_category_path(category), :class => "btn btn-warning botao" %></td>
+        <td><%= link_to 'Apagar', category, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-danger botao" %></td>
           <%end %>
       </tr>
     <% end %>

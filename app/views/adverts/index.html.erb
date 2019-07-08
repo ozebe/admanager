@@ -63,7 +63,7 @@
 
   <h1>Anúncios</h1>
 
-  <div class="panel panel-default" style="float: left;">
+  <div class="panel panel-default painel">
     <div class="panel-heading">Categorias</div>
     <div class="panel-body">
       <p id="notice"><%= notice %></p>
@@ -89,10 +89,10 @@
   <div class="col-md-offset-3 ">
     <% @adverts.each do |advert| %>
       <div class="col-sm-8">
-        <div class="thumbnail" style="height: 148px;">
+        <div class="thumbnail thumb">
           <div class="">
 
-            <div class="" style="float: left";>
+            <div class="painel">
               <% p = advert.images[0]%>
               <%= link_to (image_tag(p.thumb.url) unless p.file.nil?), advert %>
 
@@ -105,14 +105,10 @@
                 <div  class="col-sm-6 " style="max-width: 200px;">
                   <h3><%=resume advert.title %></h3>
                 </div>
-                <div style="float: right;     height: inherit;
-                    padding: 10px 0 0 0;
-                    width: 56px;">
+                <div class="info-advert">
                   <h4><%= post_date advert.created_at %></h4>
                 </div>
-                <div style="float: right;     height: inherit;
-                    padding: 16px 0 0 0;
-                    width: 96px;;">
+                <div class="info-ajuste">
                   <h4><strong>R$ <%= advert.price %></strong></h4>
                 </div>
 

@@ -23,13 +23,16 @@
 
         <% end %>
       </ul>
-
+      <form class="navbar-form navbar-left">
+      </form>
       <% if user_signed_in? %>
         <ul class="nav navbar-nav navbar-right">
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= current_user.email%><span class="caret"></span></a>
             <ul class="dropdown-menu">
               <li><%= link_to "Editar conta", edit_user_registration_path %></li>
+              <%user = current_user %>
+              <li><%= link_to 'Meus anúncios', adverts_path(:id=>user.id)%></li>
               <%if current_user.admin? == true %>
                 <li><%= link_to "Usuários", users_path %></li>
                 <li><%= link_to "Criar categoria", new_category_path %></li>
@@ -69,10 +72,10 @@
         <td><%= user.name %></td>
         <td><%= user.address %></td>
         <td><%= user.telephone %></td>
-        <td><%= link_to 'Visualizar Conta', user, :class => "btn btn-info" %></td>
+        <td><%= link_to 'Visualizar Conta', user, :class => "btn btn-info botao" %></td>
         <%if can? :manage, user %>
-          <td><%= link_to 'Edit', edit_user_path(user), :class => "btn btn-warning" %></td>
-          <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-danger" %></td>
+          <td><%= link_to 'Edit', edit_user_path(user), :class => "btn btn-warning botao" %></td>
+          <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-danger botao" %></td>
         <%end %>
       </tr>
     <% end %>

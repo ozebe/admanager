@@ -69,7 +69,7 @@
       <br>
       <p>
         <strong>Data de inserção do anúncio:</strong>
-        <%= @advert.created_at %>
+        <%= post_date @advert.created_at %>
         <br>
         <strong>Nome Vendedor: </strong><%= @advert.user.name %>
         <br>
@@ -100,14 +100,14 @@
       <br>
       <%advert = @advert %>
       <%if can? :manage, advert %>
-        <%= link_to 'Editar', edit_advert_path(@advert), :class => "btn btn-warning"  %>
-        <%= link_to 'Apagar', @advert, method: :delete, data: { confirm: 'Tem certeza que deseja apagar?' }, :class => "btn btn-danger"  %>
+        <%= link_to 'Editar', edit_advert_path(@advert), :class => "btn btn-warning botao"  %>
+        <%= link_to 'Apagar', @advert, method: :delete, data: { confirm: 'Tem certeza que deseja apagar?' }, :class => "btn btn-danger botao"  %>
       <%end %>
 
     </div>
   </div>
 
-  <%= link_to 'Voltar', adverts_path, :class => "btn btn-primary"  %>
+  <%= link_to 'Voltar', adverts_path, :class => "btn-lg btn-primary botao"  %>
 
 
   <h2>Anúncios com a mesma categoria</h2>
@@ -115,10 +115,10 @@
   <div class="col-md-offset-3 ">
     <% @adverts.each do |advert| %>
       <div class="col-sm-8">
-        <div class="thumbnail" style="height: 148px;">
+        <div class="thumbnail thumb">
           <div class="">
 
-            <div class="" style="float: left";>
+            <div class="painel">
               <% p = advert.images[0]%>
               <%= link_to (image_tag(p.thumb.url) unless p.file.nil?), advert%>
 
@@ -128,7 +128,7 @@
             </div>
             <div class="caption">
               <div class="">
-                <div  class="col-sm-6 " style="max-width: 200px;">
+                <div  class="col-sm-6 lg-max-painel">
                   <h3><%=resume advert.title %></h3>
                 </div>
                 <div style="float: right;     height: inherit;
